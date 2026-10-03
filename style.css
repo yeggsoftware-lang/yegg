@@ -328,9 +328,26 @@ footer, .footer {
         grid-template-columns: 1fr;
     }
 
-   /* Esconde a primeira versão duplicada dos trabalhos */
-.works:first-of-type, .myworks:first-of-type {
+   /* =========================================================
+   SOLUÇÃO DEFINITIVA: REMOVE A DUPLICATA E AJUSTA O TÍTULO
+   ========================================================= */
+
+/* Esconde a primeira ocorrência duplicada da seção de trabalhos */
+section:has(.works-title):first-of-type,
+div:has(.works-title):first-of-type,
+.works:first-of-type, 
+.myworks:first-of-type {
     display: none !important;
+}
+
+/* Garante que o título fique 100% em uma única linha */
+.works-title, .workstitle, .works h1, .works h2 {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    white-space: nowrap !important;
+    gap: 8px !important;
 }
    
 }
