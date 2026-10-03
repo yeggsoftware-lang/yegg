@@ -1,5 +1,5 @@
 /* =========================================================
-   ESTILOS GERAIS DA PÁGINA
+   1. RESET E ESTILOS BASE
    ========================================================= */
 
 * {
@@ -17,17 +17,17 @@ html, body {
     overflow-x: hidden;
 }
 
-/* LINHA DIVISÓRIA SUAVE */
+/* Linha divisória com opacidade suave */
 hr {
     border: none;
     height: 1px;
-    background-color: rgba(255, 255, 255, 0.15);
+    background-color: rgba(255, 255, 255, 0.15) !important;
     margin: 0;
     width: 100%;
 }
 
 /* =========================================================
-   1. HEADER / NAVBAR
+   2. HEADER / NAVBAR
    ========================================================= */
 
 header, .header {
@@ -43,7 +43,7 @@ header, .header {
 }
 
 .logo, header img:first-child {
-    height: 65px !important;
+    height: 55px !important;
     width: auto !important;
     object-fit: contain;
 }
@@ -71,7 +71,7 @@ nav a:hover, .navigation a:hover {
 }
 
 /* =========================================================
-   2. HERO SECTION
+   3. HERO SECTION & SETA (RESTALRADAS E CORRIGIDAS)
    ========================================================= */
 
 .hero {
@@ -82,18 +82,16 @@ nav a:hover, .navigation a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative;
-}
-
-/* REMOVE A SETA QUE ESTAVA ATRAPALHANDO */
-.arrow, img[src*="arrow"], img[src*="seta"] {
-    display: none !important;
+    position: relative !important;
+    min-height: 480px;
 }
 
 .herosub {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    position: relative;
+    z-index: 2;
 }
 
 .name {
@@ -143,14 +141,28 @@ nav a:hover, .navigation a:hover {
     opacity: 0.9;
 }
 
-.heroimg {
-    max-width: 320px !important;
+.heroimg, .hero img:not(.arrow) {
+    max-width: 340px !important;
     height: auto !important;
     object-fit: contain;
+    z-index: 2;
+}
+
+/* SETA REPOSICIONADA E BEM AJUSTADA (NÃO TAPA O TEXTO) */
+.arrow, img[src*="arrow"], img[src*="seta"] {
+    display: block !important;
+    position: absolute !important;
+    width: 90px !important;
+    height: auto !important;
+    left: -60px !important;
+    top: -10px !important;
+    z-index: 1 !important;
+    opacity: 0.5 !important;
+    pointer-events: none;
 }
 
 /* =========================================================
-   3. ABOUT ME SECTION
+   4. ABOUT ME SECTION
    ========================================================= */
 
 .aboutme {
@@ -163,7 +175,7 @@ nav a:hover, .navigation a:hover {
     gap: 3rem;
 }
 
-.aboutmeimg {
+.aboutmeimg, .aboutme img {
     max-width: 250px !important;
     height: auto !important;
 }
@@ -191,8 +203,17 @@ nav a:hover, .navigation a:hover {
 }
 
 /* =========================================================
-   4. MY WORKS SECTION (EM 1 LINHA)
+   5. MY WORKS SECTION (ELIMINA DUPLICATA E FORÇA 1 LINHA)
    ========================================================= */
+
+/* Esconde estritamente o primeiro elemento duplicado de Works */
+main > .works:first-of-type,
+main > .myworks:first-of-type,
+body > .works:first-of-type,
+body > .myworks:first-of-type,
+section.works:nth-of-type(1) {
+    display: none !important;
+}
 
 .works, .myworks {
     width: 100%;
@@ -202,6 +223,7 @@ nav a:hover, .navigation a:hover {
     text-align: left;
 }
 
+/* Título garantido em linha única */
 .works-title, .workstitle, .works h1, .works h2 {
     font-size: 2.2rem !important;
     font-weight: 700;
@@ -214,12 +236,17 @@ nav a:hover, .navigation a:hover {
     white-space: nowrap !important;
 }
 
+.works-title *, .workstitle *, .works h1 *, .works h2 * {
+    display: inline-block !important;
+    margin: 0 !important;
+}
+
 .works ul {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    list-style: none;
-    padding: 0;
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 1.5rem !important;
+    list-style: none !important;
+    padding: 0 !important;
 }
 
 .works li, .work-card {
@@ -227,6 +254,11 @@ nav a:hover, .navigation a:hover {
     border-radius: 12px;
     padding: 1.2rem;
     backdrop-filter: blur(5px);
+    transition: transform 0.3s ease;
+}
+
+.works li:hover, .work-card:hover {
+    transform: translateY(-5px);
 }
 
 .works li img, .work-card img {
@@ -237,7 +269,7 @@ nav a:hover, .navigation a:hover {
 }
 
 /* =========================================================
-   5. CONTACT ME & FOOTER
+   6. CONTACT ME & FOOTER
    ========================================================= */
 
 .contact-me {
@@ -311,43 +343,31 @@ footer, .footer {
     font-size: 0.85rem;
 }
 
-/* RESPONSIVO */
+/* =========================================================
+   7. RESPONSIVIDADE (TABLET & MOBILE)
+   ========================================================= */
+
 @media screen and (max-width: 900px) {
+    .arrow, img[src*="arrow"], img[src*="seta"] {
+        display: none !important;
+    }
+
     .hero {
         flex-direction: column;
         text-align: center;
+        padding: 2rem 1rem;
     }
+
     .herobtns {
         justify-content: center;
     }
+
     .aboutme {
         flex-direction: column-reverse !important;
         text-align: center;
     }
+
     .works ul {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
     }
-
-   /* =========================================================
-   SOLUÇÃO DEFINITIVA: REMOVE A DUPLICATA E AJUSTA O TÍTULO
-   ========================================================= */
-
-/* Esconde a primeira ocorrência duplicada da seção de trabalhos */
-section:has(.works-title):first-of-type,
-div:has(.works-title):first-of-type,
-.works:first-of-type, 
-.myworks:first-of-type {
-    display: none !important;
-}
-
-/* Garante que o título fique 100% em uma única linha */
-.works-title, .workstitle, .works h1, .works h2 {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
-    white-space: nowrap !important;
-    gap: 8px !important;
-}
-   
 }
