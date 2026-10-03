@@ -61,14 +61,14 @@ nav a:hover, .navigation a:hover {
 }
 
 /* =========================================================
-   2. HERO SECTION
+   2. HERO SECTION (AFASTADO DAS BORDAS)
    ========================================================= */
 
 .hero {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 3rem 2rem;
+    padding: 3rem 4rem; /* Margem interna para descolar da borda */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -148,7 +148,7 @@ nav a:hover, .navigation a:hover {
     width: 100%;
     max-width: 1200px;
     margin: 3rem auto;
-    padding: 0 2rem;
+    padding: 0 4rem;
     display: flex;
     align-items: center;
     gap: 2.5rem;
@@ -182,29 +182,34 @@ nav a:hover, .navigation a:hover {
 }
 
 /* =========================================================
-   4. MY WORKS SECTION (CORRIGIDO PARA PC)
+   4. MY WORKS SECTION (FORÇANDO TÍTULO NA MESMA LINHA)
    ========================================================= */
 
 .works, .myworks {
     width: 100%;
     max-width: 1200px;
     margin: 4rem auto;
-    padding: 0 2rem;
-    text-align: left; /* Alinha o conteúdo à esquerda no PC */
+    padding: 0 4rem;
+    text-align: left;
 }
 
-/* Título My recent Works no PC */
+/* Garante que a tag que envolve o título não empilhe os elementos */
 .works-title, .workstitle, .works h1, .works h2 {
-    font-size: 2.6rem !important; /* Aumentado o tamanho no PC */
+    font-size: 2.4rem !important;
     font-weight: 700;
     margin-bottom: 2rem;
     display: flex !important;
     flex-direction: row !important;
-    justify-content: flex-start !important; /* Alinha o título na lateral no PC */
+    justify-content: flex-start !important;
     align-items: center !important;
-    gap: 12px !important;
-    white-space: nowrap !important; /* Impede quebrar em 2 linhas */
-    width: 100%;
+    gap: 10px !important;
+    white-space: nowrap !important;
+}
+
+/* Caso o HTML use spans ou tags separadas para o título */
+.works-title *, .workstitle *, .works h1 *, .works h2 * {
+    display: inline-block !important;
+    margin: 0 !important;
 }
 
 .works ul {
@@ -302,7 +307,6 @@ nav a:hover, .navigation a:hover {
     color: #00adb5;
 }
 
-/* CÍRCULOS DAS REDES SOCIAIS */
 .social-links {
     display: flex;
     justify-content: center;
@@ -336,7 +340,6 @@ nav a:hover, .navigation a:hover {
     object-fit: contain;
 }
 
-/* RESGATE DO INSTAGRAM */
 .social-circle img[src*="instagram"] {
     width: 42px !important;
     height: 42px !important;
@@ -368,7 +371,7 @@ footer p, .footer p {
 }
 
 /* =========================================================
-   7. RESPONSIVIDADE APENAS PARA CELULAR E TABLET (MAX 900PX)
+   7. RESPONSIVIDADE PARA CELULAR E TABLET
    ========================================================= */
 
 @media screen and (max-width: 900px) {
@@ -444,9 +447,9 @@ footer p, .footer p {
         font-size: 0.9rem;
     }
 
-    /* Centraliza o título nos celulares apenas */
     .works, .myworks {
         text-align: center;
+        padding: 0 1rem;
     }
 
     .works-title, .workstitle, .works h1, .works h2 {
