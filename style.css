@@ -17,7 +17,7 @@ html, body {
     overflow-x: hidden;
 }
 
-/* LINHA DIVISÓRIA COM OPACIDADE SUAVE */
+/* LINHA DIVISÓRIA SUAVE */
 hr {
     border: none;
     height: 1px;
@@ -42,9 +42,8 @@ header, .header {
     background: transparent;
 }
 
-/* Logo com tamanho normal e visível */
 .logo, header img:first-child {
-    height: 50px !important;
+    height: 65px !important;
     width: auto !important;
     object-fit: contain;
 }
@@ -72,26 +71,29 @@ nav a:hover, .navigation a:hover {
 }
 
 /* =========================================================
-   2. HERO SECTION (CORRIGIDO A SETA E IMAGENS GIGANTES)
+   2. HERO SECTION
    ========================================================= */
 
 .hero {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 3rem 2rem;
+    padding: 4rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative; /* MANTÉM A SETA PRESA AQUI */
-    min-height: 450px;
+    position: relative;
+}
+
+/* REMOVE A SETA QUE ESTAVA ATRAPALHANDO */
+.arrow, img[src*="arrow"], img[src*="seta"] {
+    display: none !important;
 }
 
 .herosub {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    z-index: 2;
 }
 
 .name {
@@ -141,24 +143,10 @@ nav a:hover, .navigation a:hover {
     opacity: 0.9;
 }
 
-/* Imagem do boneco no notebook com tamanho controlado */
-.heroimg, .hero img:not(.arrow) {
+.heroimg {
     max-width: 320px !important;
     height: auto !important;
     object-fit: contain;
-    z-index: 2;
-}
-
-/* CORREÇÃO CRÍTICA DA SETA GIGANTE */
-.arrow {
-    position: absolute !important;
-    width: 120px !important; /* Limita o tamanho da seta */
-    height: auto !important;
-    left: -20px !important;
-    top: 10% !important;
-    z-index: 1 !important;
-    opacity: 0.6;
-    pointer-events: none;
 }
 
 /* =========================================================
@@ -175,7 +163,7 @@ nav a:hover, .navigation a:hover {
     gap: 3rem;
 }
 
-.aboutmeimg, .aboutme img {
+.aboutmeimg {
     max-width: 250px !important;
     height: auto !important;
 }
@@ -203,7 +191,7 @@ nav a:hover, .navigation a:hover {
 }
 
 /* =========================================================
-   4. MY WORKS SECTION (FORÇANDO TÍTULO EM 1 LINHA)
+   4. MY WORKS SECTION (EM 1 LINHA)
    ========================================================= */
 
 .works, .myworks {
@@ -239,11 +227,6 @@ nav a:hover, .navigation a:hover {
     border-radius: 12px;
     padding: 1.2rem;
     backdrop-filter: blur(5px);
-    transition: transform 0.3s ease;
-}
-
-.works li:hover, .work-card:hover {
-    transform: translateY(-5px);
 }
 
 .works li img, .work-card img {
@@ -254,7 +237,7 @@ nav a:hover, .navigation a:hover {
 }
 
 /* =========================================================
-   5. CONTACT ME SECTION
+   5. CONTACT ME & FOOTER
    ========================================================= */
 
 .contact-me {
@@ -274,17 +257,9 @@ nav a:hover, .navigation a:hover {
     text-align: center;
 }
 
-.contact-title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 2rem;
-}
-
 .contact-title h1, .contact-me h1 {
     font-size: 2.2rem;
-    margin: 0;
+    margin-bottom: 2rem;
 }
 
 .contact-info {
@@ -299,27 +274,16 @@ nav a:hover, .navigation a:hover {
 .info-item {
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 8px;
 }
 
-.info-item img, .info-icon {
+.info-item img {
     width: 20px;
     height: 20px;
-    object-fit: contain;
-}
-
-.info-item a, .info-item span {
-    color: #ffffff;
-    font-size: 0.95rem;
-    font-weight: 500;
-    text-decoration: none;
 }
 
 .social-links {
     display: flex;
-    justify-content: center;
-    align-items: center;
     gap: 1rem;
 }
 
@@ -331,62 +295,35 @@ nav a:hover, .navigation a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    text-decoration: none;
-    transition: transform 0.3s ease;
-}
-
-.social-circle:hover {
-    transform: translateY(-3px);
-    background: rgba(0, 173, 181, 0.25);
 }
 
 .social-circle img {
     width: 20px;
     height: 20px;
-    object-fit: contain;
 }
-
-/* =========================================================
-   6. FOOTER
-   ========================================================= */
 
 footer, .footer {
     width: 100%;
     padding: 1.5rem 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     text-align: center;
     background-color: #1a1e24;
     color: #a0a0a0;
     font-size: 0.85rem;
 }
 
-/* =========================================================
-   7. RESPONSIVIDADE (MOBILE)
-   ========================================================= */
-
+/* RESPONSIVO */
 @media screen and (max-width: 900px) {
-    .arrow {
-        display: none !important; /* Esconde a seta no celular para não bagunçar */
-    }
-
     .hero {
         flex-direction: column;
         text-align: center;
-        padding: 2rem 1rem;
     }
-
     .herobtns {
-        flex-direction: column;
-        align-items: center;
+        justify-content: center;
     }
-
     .aboutme {
         flex-direction: column-reverse !important;
         text-align: center;
     }
-
     .works ul {
         grid-template-columns: 1fr;
     }
